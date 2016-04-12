@@ -24,6 +24,7 @@ public class CreateAlgoOutput {
 	private List<Double> vect1 = null;
 	private List<Double> vect2 = null;	
 	private Set<Integer> quesConsidered = null;
+	private Set<Integer> quesTrained = null;
 	private ILexicalDatabase db = null;
 	private List<RelatednessCalculator> rcList = null;
 	private List<Double> algoMaxList = null;
@@ -42,6 +43,7 @@ public class CreateAlgoOutput {
 		vect1 = new LinkedList<Double>();
 		vect2 = new LinkedList<Double>();
 		quesConsidered = new HashSet<Integer>();
+		quesTrained = new HashSet<Integer>();
 		db = Config.db;
 		rcList = Config.helper.getAlgoObjList();
 		algoMaxList = Config.helper.getAlgoMax();
@@ -58,6 +60,7 @@ public class CreateAlgoOutput {
 	public void startPreprocessing(){
 		System.out.println("Started preprocessing... ");
 		long lStartTime = new Date().getTime();
+		int minQues = 0;
 		//int doneAmount = 0 ,everyPercentCount = 0, statusPrint = 1;
 		if(Config.writeAlgoOutput){
 			try {
@@ -88,14 +91,22 @@ public class CreateAlgoOutput {
 					e.printStackTrace();
 				}
 				System.out.println("Total Rows  :"+ques2Objects.size());
+				minQues = (ques2Objects.size()<Config.quesToTrain)? ques2Objects.size() : Config.quesToTrain;
 				rowList = new LinkedList<String>();
-				for(int q=0; q<ques2Objects.size(); q++){
-					ques2 = ques2Objects.get(q);
+				quesTrained = new HashSet<Integer>();;
+				for(int q=0; q<minQues; q++){
+					
+					int innerIndex = randomQues.nextInt(ques2Objects.size());
+					while(quesTrained.contains(innerIndex)){
+						innerIndex = randomQues.nextInt(ques2Objects.size());
+					}
+					quesTrained.add(innerIndex);
+					ques2 = ques2Objects.get(innerIndex);
 					token2 = Config.helper.stringToList(ques2.getKeywords(), ",");
 					tokenUnion = Config.helper.listUnion(token1, token2);
 					
 					String row = "";
-					row += ques2;
+					row += ques2.getTitle();
 					for(int i=0;i<Config.algoCount;i++){
 						vect1 = Config.vectorizer.vectorize(token1,tokenUnion,new Relevance(db, rcList.get(i)),algoMaxList.get(i));
 						vect2 = Config.vectorizer.vectorize(token2,tokenUnion,new Relevance(db, rcList.get(i)),algoMaxList.get(i));
@@ -103,10 +114,11 @@ public class CreateAlgoOutput {
 						row += Config.algoDelimiter+String.valueOf(score);
 					}
 					rowList.add(row);
-					System.out.print("Rows computed : "+q+"||  Percent done : "+(((double)q)/ques2Objects.size())+"\r");
+					System.out.print("Rows computed : "+q+"||  Percent done : "+(((double)q)/minQues)+"\r");
 				}
 				CSVWriter csvWriter = new CSVWriter(Config.algoCsvFolder+fileNo+".csv");
 				csvWriter.writeToFile(ques1.getTitle(), Config.algoHeaders, rowList, Config.algoDelimiter);
+				ques2Objects = null;
 //				doneAmount++;
 //				if(doneAmount >= (everyPercentCount*statusPrint)){
 //					int loopLimit = ((int)Math.floor(doneAmount/(everyPercentCount/Config.statusDisplayPercent)));
