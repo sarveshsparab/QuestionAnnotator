@@ -1,0 +1,52 @@
+#Fields for 'Question' node#
+-qid (Question Id)
+-title (Question title) 
+-uid (Id of the user who asked this question)
+
+#Fields for 'Tag' node#
+-tid (Tag Id)
+-name (Tag name)
+-count (The number of questions in which the tag appears)
+
+#Fields for 'User' node#
+-uid (User Id)
+-name (Username)
+
+#Relationships#
+Question->Tag ('containsTag' relationship from a Question 'q' to its corresponding Tags 't1', 't2', etc)
+User->Question ('asked' relationship from a User 'u' to the Questions he has asked 'q1', 'q2', etc)
+
+#CSV files location on my local system#
+file:///home/danish/Downloads/50Ques
+
+#Create 'Question' nodes#
+LOAD CSV WITH HEADERS FROM "file:///home/danish/Downloads/50Ques/Ques.csv" AS csvLine
+CREATE (q:Question { qid: toInt(csvLine.quesId), title: csvLine.title, uid: toInt(csvLine.personId) })
+
+#Create 'Tag' nodes#
+LOAD CSV WITH HEADERS FROM "file:///home/danish/Downloads/50Ques/Tags.csv" AS csvLine
+CREATE (t:Tag { tid: toInt(csvLine.tagId), name: csvLine.tagName, count: toInt(csvLine.occurence) }
+
+#Create unique constraint on Question Id#
+CREATE CONSTRAINT ON (question:Question) ASSERT question.qid IS UNIQUE
+
+#Create unique constraint on Tag Id#
+CREATE CONSTRAINT ON (tag:Tag) ASSERT tag.tid IS UNIQUE
+
+#Create 'containsTag' relationship between 'Question' and 'Tag' nodes#
+USING PERIODIC COMMIT 500
+LOAD CSV WITH HEADERS FROM "file:///home/danish/Downloads/50Ques/Relation.csv" AS csvLine
+MATCH (question:Question { qid: toInt(csvLine.quesId)}),(tag:Tag { tid: toInt(csvLine.tagId)})
+CREATE (question)-[:containsTag]->(tag)
+
+#Create 'User' nodes#
+LOAD CSV WITH HEADERS FROM "file:///home/danish/Downloads/50Ques/Users.csv" AS csvLine
+CREATE (u:User { uid: toInt(csvLine.personId), name: csvLine.userName })
+
+#Create 'asked' relationship between 'User' and 'Question' nodes#
+LOAD CSV WITH HEADERS FROM "file:///home/danish/Downloads/50Ques/Users.csv" AS csvLine
+MATCH (question:Question { uid: toInt(csvLine.personId)}),(user:User { uid: toInt(csvLine.personId)})
+CREATE (user)-[:asked]->(question)
+
+#Create 0 weight directed realtionships
+MATCH (t1:Tag),(t2:Tag) WHERE t1.count>t2.count CREATE (t2)-[r:related{Weight:0}]->(t1)

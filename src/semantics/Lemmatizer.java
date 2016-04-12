@@ -1,0 +1,41 @@
+package semantics;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Properties;
+
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.CoreMap;
+
+public class Lemmatizer {
+	protected StanfordCoreNLP pipeline;
+	private int verbose;
+	private static Helper helper = new Helper();
+    public Lemmatizer(int verbose) {
+        Properties props;
+        props = new Properties();
+        props.put("annotators", "tokenize, ssplit, pos, lemma");
+        this.pipeline = new StanfordCoreNLP(props);
+        this.verbose = verbose;
+    }
+    
+    public List<String> lemmatize(String documentText){
+    	helper.printVerbose(verbose, "Lemmatizing Starts....");
+        List<String> lemmas = new LinkedList<String>();
+        Annotation document = new Annotation(documentText);
+        this.pipeline.annotate(document);
+        List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+        for(CoreMap sentence: sentences) {
+            for (CoreLabel token: sentence.get(TokensAnnotation.class)) {
+                lemmas.add(token.get(LemmaAnnotation.class));
+            }
+        }
+        helper.printVerbose(verbose, "Lemmatizing Ends....");
+        return lemmas;
+    }
+}
