@@ -24,7 +24,14 @@ import semantics.Vectorizer;
 
 public class Config {
 	
-	//Semantic Algorithms
+	/**
+	 * @category Semantic Variables
+	 * @variable db : initializes the WordNet Lexical Database
+	 * @variable rc : sets the semantic algorithm which will run when single algorithm chosen
+	 * @variable rcMax : sets the maximum possible algorithm value
+	 * @variable semanticWeight : Sets the weights for the various semantic algorithms
+	 * @author Sarvesh
+	 */
 	public static ILexicalDatabase db = new NictWordNet();
 	public static RelatednessCalculator wup = new WuPalmer(db);
 	public static RelatednessCalculator res = new Resnik(db);
@@ -34,29 +41,57 @@ public class Config {
 	public static RelatednessCalculator path = new Path(db);
 	public static RelatednessCalculator lesk = new Lesk(db);
 	public static RelatednessCalculator hso = new HirstStOnge(db);
+	
 	public static RelatednessCalculator rc = lin; 
 	public static double rcMax = 1.0;
 	
-	//Semantic Weights
 	public static String semanticWeight = "0.1666667|0.1666667|0.1666667|0.1666667|0.1666667|0.1666667";
 	
-	//MySql Parameters
+	/**
+	 * @category My-SQL Variables
+	 * @variable dbUsername : My-SQL Username
+	 * @variable dbPassword : My-SQL Password
+	 * @variable dbHost : My-SQL Host Address
+	 * @variable dbPort : My-SQL Server Port
+	 * @variable dbName : My-SQL Database Name
+	 * @author Sarvesh
+	 */
 	public static String dbUsername = "avengers";
 	public static String dbPassword = "sadrvm";
 	public static String dbHost = "localhost";
 	public static int dbPort = 3307;
 	public static String dbName = "fyproject";
 	
-	//Paths
-	public static String neo4jPath = "data/neoData";
+	/**
+	 * @category Path Variables
+	 * @variable algoCsvFolder : Stores the .CSV files for algo-weight Preprocessing
+	 * @variable wordsListPath : Location of dictionary for Trie
+	 * @variable weightOutputPath : Location of output of algo-weights
+	 * @author Sarvesh
+	 */
 	public static String algoCsvFolder = "data/preProcess/CSVFiles/";
 	public static String wordsListPath = "data/EnglishWords/words.txt";
 	public static String weightOutputPath = "data/preProcess/Output/weightResult.txt";
 	
-	//Delimiters
+	/**
+	 * @category Path Variables
+	 * @variable algoDelimiter : The delimiter between strings
+	 * @author Sarvesh
+	 */
 	public static String algoDelimiter = " ASVAARNVTEISKHA ";
 	
-	//Constants
+	/**
+	 * @category Constant Variables
+	 * @variable verbose : Flag to enable detailed printing
+	 * @variable maxTagsOutput : To stop after we obtain this amount of tags
+	 * @variable writeAlgoOutput : Flag to enable output to be written
+	 * @variable quesToTrain : Number of questions to train in the cluster
+	 * @variable writeFilesCount : Number of .CSV files to be written for training purpose
+	 * @variable algoCount : The number of algo considered when multiple algo used for semantic measure
+	 * @variable statusDisplayPercent : Progress bar status granularity measure
+	 * @variable basicPreProcessOrder : The order in which semantic pre-processing will happen
+	 * @author Sarvesh
+	 */
 	public static int verbose = 0;
 	public static int maxTagsOutput = 50;
 	public static boolean writeAlgoOutput = true;
@@ -66,10 +101,18 @@ public class Config {
 	public static int statusDisplayPercent = 1;
 	public static String basicPreProcessOrder = "GET_TAGS|LEMMATIZE|REMOVE_STOP_WORDS|TOKENIZE|REMOVE_PUNCTUATION|STEMMATIZE|HASH|SORT";
 	
-	//Miscellaneous
+	/**
+	 * @category Miscellaneous Variables
+	 * @variable algoHeaders : Algo headers for .CSV files
+	 * @author Sarvesh
+	 */
 	public static List<String> algoHeaders = Arrays.asList("Question","WUP","RES","JCN","LIN","LCH","PATH","LESK","HSO");
 	
-	//Class objects
+	/**
+	 * @category Class Variables
+	 * Here those classes are instantiated whose objects aren't supposed to be created anywhere else
+	 * @author Sarvesh
+	 */
 	public static Helper helper = new Helper();
 	public static Tokenizer tokenizer = new Tokenizer(verbose);
 	public static Lemmatizer lemmatizer = new Lemmatizer(verbose);
