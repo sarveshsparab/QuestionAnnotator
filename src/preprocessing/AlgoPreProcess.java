@@ -1,5 +1,6 @@
 package preprocessing;
 
+import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,12 +29,15 @@ public class AlgoPreProcess {
 		System.out.println("Started preprocessing... ");
 		long lStartTime = new Date().getTime();
 		String[] headers = null;
-		
-		for(int fileNo = 1; fileNo <= Config.writeFilesCount ; fileNo++){
-			fileAsList = new LinkedList<LinkedList<String>>();
+		File folder = new File(Config.algoCsvFolder);
+		File[] listOfFiles = folder.listFiles();
+
+	    for (int fileNo = 1; fileNo <= listOfFiles.length; fileNo++) {
+	      if (listOfFiles[(fileNo-1)].isFile() && listOfFiles[(fileNo-1)].getName().toLowerCase().endsWith(".csv")) {
+	        fileAsList = new LinkedList<LinkedList<String>>();
 			algoKeyOrdered = new LinkedList<LinkedList<Integer>>();
 			clusterSet = new HashSet<Integer>();
-			CSVReader csvReader = new CSVReader(Config.algoCsvFolder+fileNo+".csv");
+			CSVReader csvReader = new CSVReader(Config.algoCsvFolder+listOfFiles[(fileNo-1)].getName());
 			fileAsList = csvReader.readRowsIntoList(true,true);
 			maxDist = rangeMax = 0.0;
 			minDist = (Math.floor(fileAsList.size()/2.0))*(2*(fileAsList.size()-1)+(Math.floor(fileAsList.size()/2.0)-1)*(-2));
@@ -78,7 +82,9 @@ public class AlgoPreProcess {
 				else
 					weightMat[i] += 0;
 			}
-		}
+	      }
+	    }
+		
 		String weightStr = "";
 		double netWeight = 0.0;
 		for(int i=0;i<Config.algoCount;i++){

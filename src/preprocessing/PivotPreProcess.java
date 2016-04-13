@@ -40,7 +40,7 @@ public class PivotPreProcess {
 			case 3:
 				algoOutput.startPreprocessing();
 				break;
-			case 43:
+			case 4:
 				algoPreProcess.startPreprocessing();
 				break;
 			case 5:
