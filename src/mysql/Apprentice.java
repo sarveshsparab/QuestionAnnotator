@@ -25,6 +25,7 @@ public class Apprentice
     private Connectdb conn; 
     private String remainingQuestion; 
     private List<String> relevantTags; 
+    private List<String> questionTitles; 
     private Map<Integer, List<LinkedList<Integer>>> powerset = new HashMap<>(); 
     private List<String> tags; 
     private Set<String> simpleTags; 
@@ -41,6 +42,7 @@ public class Apprentice
         remainingQuestion = ""; 
          
         relevantTags = new ArrayList<String>(); 
+        questionTitles = new ArrayList<String>(); 
          
         simpleTags = new TreeSet<String>(); 
         complexTags = new HashMap<String, List<String>>(); 
@@ -51,6 +53,9 @@ public class Apprentice
         } 
         if(tags != null) { 
             createTagHashAndSet(tags, simpleTags, complexTags); 
+            //System.out.println("Simple and Complex Tags created"); 
+            //printSimpleTags(simpleTags); 
+            //printComplexTags(complexTags); 
         } 
          
     } 
@@ -125,9 +130,9 @@ public class Apprentice
                     wordsInTags.add((questionWords[currentWord]).toLowerCase()); 
                 } 
             } 
-            if((currentWord != questionWords.length - 1) && complexTags.containsKey(questionWords[currentWord])) { 
-                List<String> remainingTagParts = complexTags.get(questionWords[currentWord]); 
-                //System.out.println("HEY" + remainingTagParts); 
+            if((currentWord != questionWords.length - 1) && complexTags.containsKey(questionWords[currentWord].toLowerCase())) { 
+                List<String> remainingTagParts = complexTags.get(questionWords[currentWord].toLowerCase()); 
+                System.out.println("HEY" + remainingTagParts + " " + questionWords[currentWord]); 
                 for(int i = 0; i < remainingTagParts.size(); i++) { 
                      
                     String[] currentRemainingTagParts = remainingTagParts.get(i).split(" "); 
@@ -135,7 +140,7 @@ public class Apprentice
                     int j = 0; 
                     currentWord++; 
                     boolean isMatching = true; 
-                    while(isMatching && j < currentRemainingTagParts.length) { 
+                    while(isMatching && j < currentRemainingTagParts.length && currentWord < questionWords.length) { 
                         if(questionWords[currentWord].equalsIgnoreCase(currentRemainingTagParts[j])) { 
                             j++; 
                             currentWord++; 
@@ -432,7 +437,7 @@ public class Apprentice
      
     public List<RelevantTag> generateRelevantTags(String tags, String userKeywords) throws SQLException { 
         List<Tag> relevanceTags = new ArrayList<Tag>(); 
-        int limit = 10; 
+        int limit = 20; 
         Map<Integer,Double> highConfidenceTags = getConfidenceForTags(tags, limit); 
         System.out.println("Got high confidence Tags...."); 
         Set<RelevantQuestion> relevantQuestions = getQuestionsWithTags(tags, highConfidenceTags, userKeywords); 
@@ -443,7 +448,7 @@ public class Apprentice
         while((numTags < this.maxNumberOfTags) && (relevantQuestionsIterator.hasNext())) { 
             RelevantQuestion currentRelevantQuestion = relevantQuestionsIterator.next(); 
             reducedRelevantQuestions.add(currentRelevantQuestion); 
-            System.out.println("Number of Tags " + numTags); 
+            //System.out.println("Number of Tags " + numTags); 
             for(Tag tag : currentRelevantQuestion.getUncommonTags()) { 
                 if(!relevanceTags.contains(tag)) { 
                     relevanceTags.add(tag); 
@@ -554,7 +559,7 @@ public void updateRelevantQuestions(int currentTagId, String qid, Map<String, Re
                 rs.next(); 
                 //System.out.println("QID : " + qid); 
                 numQuestions++; 
-                System.out.println("Number of questions done " + numQuestions); 
+                //System.out.println("Number of questions done " + numQuestions); 
                 String title = rs.getString("title"); 
                 String uid = rs.getInt("uid") + ""; 
                 String keywords = rs.getString("keywords"); 
@@ -593,7 +598,7 @@ public void findRelevantQuestionsForTagId(int tagId, Map<String, RelevantQuestio
                 //Check if the question is already present in the map 
                 updateRelevantQuestions(tagId, currentQuestionId, relevantQuestions, setRelevantQuestions, highConfidenceTags, userKeywords); 
                 localNumQuestions++; 
-                System.out.println("Num questions seen : " + localNumQuestions); 
+                //System.out.println("Num questions seen : " + localNumQuestions); 
             } 
         } 
     } 
@@ -606,6 +611,10 @@ public void findRelevantQuestionsForTagId(int tagId, Map<String, RelevantQuestio
         for(int i = 0; i < tagList.length; i++) { 
             currentTagId = getTidForTag(tagList[i]); 
             if(currentTagId != -1) { 
+                if(i >= 1) { 
+                    System.out.println(localNumQuestions + " were processed for the tag " + tagList[i - 1]); 
+                } 
+                System.out.println("Processing started for tag " + tagList[i]); 
                 localNumQuestions = 0; 
                 //Get the questions containing the current tag 
                 findRelevantQuestionsForTagId(currentTagId, relevantQuestions, setRelevantQuestions, highConfidenceTags, userKeywords); 
@@ -614,7 +623,7 @@ public void findRelevantQuestionsForTagId(int tagId, Map<String, RelevantQuestio
         } 
         createSortedSetOfRelevantQuestions(setRelevantQuestions, relevantQuestions); 
         System.out.println("Number of Questions in cluster : " + numQuestions); 
-        System.out.println("Size of Set : " + setRelevantQuestions.size()); 
+        System.out.println("Size of the sorted set of relevant questions : " + setRelevantQuestions.size()); 
         return setRelevantQuestions; 
     } 
      
