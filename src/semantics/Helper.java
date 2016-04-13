@@ -1,5 +1,6 @@
 					package semantics;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -163,5 +164,9 @@ public class Helper {
 		}
 		//dist = Math.pow(dist, (1/power));
 		return dist;
+	}
+	public int getCountOfFiles(String dirPath){
+		File dir = new File(dirPath);
+		return dir.listFiles().length;
 	}
 }

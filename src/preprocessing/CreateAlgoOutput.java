@@ -1,5 +1,6 @@
 package preprocessing;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashSet;
@@ -69,7 +70,9 @@ public class CreateAlgoOutput {
 				e.printStackTrace();
 			}
 			//everyPercentCount = Config.writeFilesCount*Config.statusDisplayPercent/100;
-			for(int fileNo = 1; fileNo <= Config.writeFilesCount ; fileNo++){
+			
+			while(Config.helper.getCountOfFiles(Config.algoCsvFolder) <= Config.writeFilesCount){
+				int fileNo = randomQues.nextInt(Config.writeFilesCount);
 				int index = randomQues.nextInt(ques1Objects.size());
 				while(quesConsidered.contains(index)){
 					index = randomQues.nextInt(ques1Objects.size());
@@ -116,7 +119,13 @@ public class CreateAlgoOutput {
 					rowList.add(row);
 					System.out.print("Rows computed : "+q+"||  Percent done : "+(((double)q)/minQues)+"\r");
 				}
-				CSVWriter csvWriter = new CSVWriter(Config.algoCsvFolder+fileNo+".csv");
+				int newFileNo = fileNo;
+				File file = new File(Config.algoCsvFolder+newFileNo+".csv");
+				while(file.exists()){
+					newFileNo++;
+					file = new File(Config.algoCsvFolder+newFileNo+".csv");
+				}
+				CSVWriter csvWriter = new CSVWriter(file);
 				csvWriter.writeToFile(ques1.getTitle(), Config.algoHeaders, rowList, Config.algoDelimiter);
 				ques2Objects = null;
 //				doneAmount++;

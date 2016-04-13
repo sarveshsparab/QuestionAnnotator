@@ -60,7 +60,7 @@ public class Config {
 	public static int verbose = 0;
 	public static int maxTagsOutput = 50;
 	public static boolean writeAlgoOutput = true;
-	public static int quesToTrain = 10;
+	public static int quesToTrain = 50;
 	public static int writeFilesCount = 10000;
 	public static int algoCount = 6;
 	public static int statusDisplayPercent = 1;

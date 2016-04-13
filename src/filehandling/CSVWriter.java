@@ -11,9 +11,15 @@ import com.csvreader.CsvWriter;
 
 public class CSVWriter {
 	private String filePath;
+	private File file;
 	
 	public CSVWriter(String filePath) {
 		this.filePath = filePath;
+	}
+	
+	public CSVWriter(File file) {
+		this.file = file;
+		this.filePath = file.getPath();
 	}
 	
 	public void writeToFile(String title,List<String> headers, List<String> rows,String delimiter){
