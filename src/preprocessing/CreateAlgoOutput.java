@@ -127,6 +127,10 @@ public class CreateAlgoOutput {
 				}
 				CSVWriter csvWriter = new CSVWriter(file);
 				csvWriter.writeToFile(ques1.getTitle(), Config.algoHeaders, rowList, Config.algoDelimiter);
+				for(int i=0;i<ques2Objects.size();i++){
+					Question q = ques2Objects.get(i);
+					q = null;
+				}
 				ques2Objects = null;
 //				doneAmount++;
 //				if(doneAmount >= (everyPercentCount*statusPrint)){

@@ -1,4 +1,4 @@
-					package semantics;
+package semantics;
 
 import java.io.File;
 import java.util.Arrays;

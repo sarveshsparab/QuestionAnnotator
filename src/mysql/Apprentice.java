@@ -132,7 +132,7 @@ public class Apprentice
             } 
             if((currentWord != questionWords.length - 1) && complexTags.containsKey(questionWords[currentWord].toLowerCase())) { 
                 List<String> remainingTagParts = complexTags.get(questionWords[currentWord].toLowerCase()); 
-                System.out.println("HEY" + remainingTagParts + " " + questionWords[currentWord]); 
+                //System.out.println("HEY" + remainingTagParts + " " + questionWords[currentWord]); 
                 for(int i = 0; i < remainingTagParts.size(); i++) { 
                      
                     String[] currentRemainingTagParts = remainingTagParts.get(i).split(" "); 
