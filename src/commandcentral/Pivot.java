@@ -38,7 +38,7 @@ public class Pivot {
 		String userQues = scanner.nextLine();
 		long lStartTime = new Date().getTime();
 		
-		/*String quesTags = Config.helper.listToString(connUtility.getQuestionTags(userQues),",");
+		String quesTags = Config.helper.listToString(connUtility.getQuestionTags(userQues),",");
 		System.out.println("tags : "+quesTags);
 		String userKeywords = Config.helper.listToString(preProcess.startPreprocessing(userQues, Config.basicPreProcessOrder),",");
 		
@@ -47,12 +47,12 @@ public class Pivot {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 		
 		
 		
-		List<String> strUserToken = preProcess.startPreprocessing(userQues, Config.basicPreProcessOrder); 
+		/*List<String> strUserToken = preProcess.startPreprocessing(userQues, Config.basicPreProcessOrder); 
 		System.out.println(strUserToken);
 		
 		Iterator<Question> quesDbIterator = null;
@@ -79,7 +79,7 @@ public class Pivot {
 			System.out.println("------------------------------------------------------");
 			//String s = scanner.nextLine();
 		}
-		
+		*/
 		long lEndTime = new Date().getTime();
 		System.out.println("\n\n Completed Preprocessing in : " + (lEndTime-lStartTime) + " milliseconds");
 	}

@@ -132,6 +132,7 @@ public class CreateAlgoOutput {
 					q = null;
 				}
 				ques2Objects = null;
+				System.gc();
 //				doneAmount++;
 //				if(doneAmount >= (everyPercentCount*statusPrint)){
 //					int loopLimit = ((int)Math.floor(doneAmount/(everyPercentCount/Config.statusDisplayPercent)));
