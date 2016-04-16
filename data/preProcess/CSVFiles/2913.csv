@@ -1,0 +1,52 @@
+About re-templating correctly DataGrid
+Question,WUP,RES,JCN,LIN,LCH,PATH,LESK,HSO
+Method called as if it belongs to the class with this parameter suppressed,0.0,0.0,0.0,0.0,0.0,0.0
+"In WPF, building a UserControl with a Button and a Popup, and how to hide Popup when I click MenuItem in it?",0.0,0.0,0.0,0.0,0.0,0.0
+Why is CollectionView.CollectionChanged protected?,0.0,0.0,0.0,0.0,0.0,0.0
+Setter precedence overriding in WPF?,0.0,0.0,0.0,0.0,0.0,0.0
+Why do I get a DependencyProperty.UnsetValue when converting a value in a MultiBinding?,0.0,0.0,0.0,0.0,0.0,0.0
+jinja2 on GAE writes out 'None' on every response,0.0,0.0,0.0,0.0,0.0,0.0
+WPF Membership API always returns false Membership.ValidateUser,0.0,0.0,0.0,0.0,0.0,0.0
+Lazy loading large data sets in wpf tabs using MVVM,0.0,0.0,0.0,0.0,0.0,0.0
+Is partial class template specialization the answer to this design problem?,0.0,0.0,0.0,0.0,0.0,0.0
+WPF: Add null value as a static resource,0.0,0.0,0.0,0.0,0.0,0.0
+WPF WebBrowser events for HTTP errors?,0.0,0.0,0.0,0.0,0.0,0.0
+Programmatically create WPF DataGridTemplateColumn for DataGrid,0.2581988897471611,0.25819888974716115,0.25819888974716115,0.2581988897471611,0.2581988897471611,0.2581988897471611
+C# Design template containers?,0.0,0.0,0.0,0.0,0.0,0.0
+Cannot perform runtime binding on a null reference when using type dynamic,0.0,0.0,0.0,0.0,0.0,0.0
+Is there any way to change a single attribute of a template in a trigger in WPF?,0.0,0.0,0.0,0.0,0.0,0.0
+Dataset validation for type ( C# .NET ),0.0,0.0,0.0,0.0,0.0,0.0
+WPF -> Stretch Image Vertical,0.0,0.0,0.0,0.0,0.0,0.0
+Show many columns in WPF DataGrid,0.2886751345948129,0.28867513459481287,0.28867513459481287,0.2886751345948129,0.28867513459481287,0.2886751345948129
+Callbacks or simple arithmetic in StringTemplate,0.0,0.0,0.0,0.0,0.0,0.0
+Synchronize HeightProperty and TopProperty animations for a Window that expands upward,0.0,0.0,0.0,0.0,0.0,0.0
+Adding a TextBlock (or label) on the end of a LineSeries DataPoint of a DataVisualizationChart,0.0,0.0,0.0,0.0,0.0,0.0
+Listview navigation behaviour in an xbap versus a standalone app,0.0,0.0,0.0,0.0,0.0,0.0
+Any free WPF themes?,0.0,0.0,0.0,0.0,0.0,0.0
+UI (XAML) is not updating the properties But propertyChanged triggred in ViewModel,0.0,0.0,0.0,0.0,0.0,0.0
+How to pass parameter from Django template?,0.0,0.0,0.0,0.0,0.0,0.0
+ElementFlow: Exception in MeasureOverride,0.0,0.0,0.0,0.0,0.0,0.0
+Polymorphic or generic approach is better? C#,0.0,0.0,0.0,0.0,0.0,0.0
+"learning test tool in WPF, WinForms",0.0,0.0,0.0,0.0,0.0,0.0
+WPF Accessing Items inside Listbox which has a UserControl as ItemTemplate,0.0,0.0,0.0,0.0,0.0,0.0
+Published program is not set up in program files directory,0.0,0.0,0.0,0.0,0.0,0.0
+DataBound DropDownList in DataGrid - order of binding,0.2581988897471611,0.25819888974716115,0.25819888974716115,0.2581988897471611,0.2581988897471611,0.2581988897471611
+"WPF , MVVM , MasterDetailPage , Designing",0.0,0.0,0.0,0.0,0.0,0.0
+I18N and L10N in WPF through XAML,0.0,0.0,0.0,0.0,0.0,0.0
+Cross platform 2D Vector + Raster API + hardware accelerated - does this exist?,0.0,0.0,0.0,0.0,0.0,0.0
+using converters,0.0,0.0,0.0,0.0,0.0,0.0
+Hide StackPanel item --> adjust remaining item positions,0.0,0.0,0.0,0.0,0.0,0.0
+What makes MVVM uniquely suited to WPF?,0.0,0.0,0.0,0.0,0.0,0.0
+WPF Databinding and Styling based on Data in an item in an IList,0.0,0.0,0.0,0.0,0.0,0.0
+C++ template specialization problems,0.0,0.0,0.0,0.0,0.0,0.0
+Binding Grid Height Using FindAncestor and AncestorLevel To Another Grid,0.0,0.0,0.0,0.0,0.0,0.0
+Creating an Empty DataGrid,0.33333333333333337,0.3333333333333333,0.3333333333333333,0.33333333333333337,0.33333333333333326,0.33333333333333337
+Setting a relative column width in XAML. '0.5*' string cannot be converted to Length,0.0,0.0,0.0,0.0,0.0,0.0
+How to know when a command has been invoked on UserControl?,0.0,0.0,0.0,0.0,0.0,0.0
+django: form.fields not iterating through instance fields,0.0,0.0,0.0,0.0,0.0,0.0
+DependencyProperty.Register() or .RegisterAttached(),0.0,0.0,0.0,0.0,0.0,0.0
+Ribbon Toolbar and Visual Studio 2008 Service Pack 1,0.0,0.0,0.0,0.0,0.0,0.0
+WPF datagrid : how to sort a column programatically?,0.23570226039551587,0.2357022603955158,0.23570226039551587,0.23570226039551587,0.23570226039551584,0.23570226039551587
+WPF: finding the location of an element,0.0,0.0,0.0,0.0,0.0,0.0
+ansible template add value to list -,0.0,0.0,0.0,0.0,0.0,0.0
+strange Problem with WPF Textbox stringformat - Cursor moves back,0.0,0.0,0.0,0.0,0.0,0.0
