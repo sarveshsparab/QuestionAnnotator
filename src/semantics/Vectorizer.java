@@ -9,15 +9,32 @@ import java.util.Set;
 
 import commandcentral.Config;
 import edu.cmu.lti.ws4j.RelatednessCalculator;
-
+/**
+ * @category Class
+ * @purpose For creating vectors from tokens
+ * @author Sarvesh
+ */
 public class Vectorizer {
 	private int verbose;
-	private Helper helper = new Helper();
+	/**
+     * @category Constructor 
+     * @argument verbose : A integer flag for verbose printing
+     * @author Sarvesh
+     */
 	public Vectorizer(int verbose){
 		this.verbose = verbose;
 	}
+	/**
+     * @category Function
+     * @argument str : linked list of tokens in a string
+     * @argument union : linked list of tokens formed after union of two strings
+     * @argument relevance : object which sets which algo to use
+     * @argument algoMax : Maximum value for the algo used
+     * @return A vector in form of linked list based on algo
+     * @author Sarvesh
+     */
 	public List<Double> vectorize(List<String> str, List<String> union, Relevance relevance, Double algoMax){
-		helper.printVerbose(verbose, "Vectorization Starts....");
+		Config.helper.printVerbose(verbose, "Vectorization Starts....");
 		int i;
 		List <Double> vect = new LinkedList<Double>();
 		Set<String> hashStr = new HashSet<String>();
@@ -37,12 +54,22 @@ public class Vectorizer {
 				vect.add(i, max);
 			}
 		}
-		helper.printVerbose(verbose, "Vectorization Ends....");
+		Config.helper.printVerbose(verbose, "Vectorization Ends....");
 		return vect;
 	}
-	
+	/**
+     * @category Function
+     * @argument str : linked list of tokens in a string
+     * @argument union : linked list of tokens formed after union of two strings
+     * @argument algoList : Linked list of objects of respective algorithms
+     * @argument algoMax : Linked list of the respective algo maximums 
+     * @argument algoCount : Number of algo used to get semantic score
+     * @argument algoWeight : The weightage importance of each algo used
+     * @return A vector in form of linked list based on algo
+     * @author Sarvesh
+     */
 	public List<Double> weightedVectorize(List<String> str, List<String> union, List<RelatednessCalculator> algoList, List<Double> algoMax, int algoCount, String algoWeights){
-		helper.printVerbose(verbose, "Vectorization Starts....");
+		Config.helper.printVerbose(verbose, "Vectorization Starts....");
 		int i;
 		List <Double> vect = new LinkedList<Double>();
 		Set<String> hashStr = new HashSet<String>();
@@ -71,7 +98,7 @@ public class Vectorizer {
 				vect.add(i, max);
 			}
 		}
-		helper.printVerbose(verbose, "Vectorization Ends....");
+		Config.helper.printVerbose(verbose, "Vectorization Ends....");
 		return vect;
 	}
 	
