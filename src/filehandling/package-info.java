@@ -1,8 +1,8 @@
 /**
- * 
+ * This package holds the code for the file handling utilities
  */
 /**
- * @author Impulse
+ * @Contributer Sarvesh
  *
  */
 package filehandling;
