@@ -20,6 +20,13 @@ public class Lemmatizer {
 	protected StanfordCoreNLP pipeline;
 	private int verbose;
 	private static Helper helper = new Helper();
+	/**
+     * @category Constructor 
+     * @argument verbose : A integer flag for verbose printing
+     * @purpose Initializes properties for every token
+     * 			Initializes the Satnford NLP pipeline to process the properties 
+     * @author Sarvesh
+     */
     public Lemmatizer(int verbose) {
         Properties props;
         props = new Properties();
