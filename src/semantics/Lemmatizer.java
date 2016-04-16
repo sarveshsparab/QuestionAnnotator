@@ -11,7 +11,11 @@ import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
-
+/**
+ * @category Class
+ * @purpose For lemmatising the string
+ * @author Sarvesh
+ */
 public class Lemmatizer {
 	protected StanfordCoreNLP pipeline;
 	private int verbose;
@@ -23,7 +27,12 @@ public class Lemmatizer {
         this.pipeline = new StanfordCoreNLP(props);
         this.verbose = verbose;
     }
-    
+    /**
+     * @category Function
+     * @argument documentText : A string sentence which needs to be broken into lemmas
+     * @return A linked list of strings of lemmas of each word in the input 
+     * @author Sarvesh
+     */
     public List<String> lemmatize(String documentText){
     	helper.printVerbose(verbose, "Lemmatizing Starts....");
         List<String> lemmas = new LinkedList<String>();
