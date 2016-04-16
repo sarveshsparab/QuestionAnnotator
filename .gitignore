@@ -166,3 +166,24 @@ fabric.properties
 
 ### Neo4j ###
 data/neoData/messages.log
+
+### MAT ###
+*.index
+*.hprof
+java_pid112492.a2s.index
+java_pid112492.domIn.index
+java_pid112492.domOut.index	
+java_pid112492.hprof
+java_pid112492.i2sv2.index
+java_pid112492.idx.index
+java_pid112492.inbound.index
+java_pid112492.index
+java_pid112492.o2c.index
+java_pid112492.o2hprof.index
+java_pid112492.o2ret.index
+java_pid112492.outbound.index
+java_pid112492.threads
+java_pid112492_Leak_Suspects.zip
+java_pid112492_Top_Consumers.zip
+
+

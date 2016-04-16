@@ -98,6 +98,16 @@ public class Apprentice
         } 
         return questionTitles; 
     } 
+    
+    public List<Question> getRandomQuestions(int limit) throws SQLException { 
+        List<Question> questionTitles = new ArrayList<Question>(); 
+        String query = "SELECT * FROM question ORDER BY rand() LIMIT "+limit; 
+        ResultSet rs = queryRun(query); 
+        while(rs.next()) { 
+            questionTitles.add(new Question(String.valueOf(rs.getInt("qid")),rs.getString("title"),String.valueOf(rs.getInt("uid")),rs.getString("keywords"))); 
+        } 
+        return questionTitles; 
+    } 
      
     public String getRemainingQuestion() { 
         return remainingQuestion; 

@@ -65,7 +65,7 @@ public class CreateAlgoOutput {
 		//int doneAmount = 0 ,everyPercentCount = 0, statusPrint = 1;
 		if(Config.writeAlgoOutput){
 			try {
-				ques1Objects = connUtility.getQuestionTitles();
+				ques1Objects = connUtility.getRandomQuestions(Config.writeFilesCount);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
