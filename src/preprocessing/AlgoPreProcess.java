@@ -31,6 +31,10 @@ public class AlgoPreProcess {
 		String[] headers = null;
 		File folder = new File(Config.algoCsvFolder);
 		File[] listOfFiles = folder.listFiles();
+		
+		for(int i=0;i<Config.algoCount;i++){
+			weightMat[i] = 1.0;
+		}
 
 	    for (int fileNo = 1; fileNo <= listOfFiles.length; fileNo++) {
 	      if (listOfFiles[(fileNo-1)].isFile() && listOfFiles[(fileNo-1)].getName().toLowerCase().endsWith(".csv")) {
@@ -89,6 +93,9 @@ public class AlgoPreProcess {
 		double netWeight = 0.0;
 		for(int i=0;i<Config.algoCount;i++){
 			netWeight += weightMat[i];
+		}
+		for(int i=0;i<Config.algoCount;i++){
+			System.out.println(weightMat[i]);
 		}
 		for(int i=0;i<Config.algoCount;i++){
 			weightStr += String.valueOf(weightMat[i]/netWeight) + " ";
