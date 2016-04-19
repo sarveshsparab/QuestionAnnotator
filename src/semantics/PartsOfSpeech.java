@@ -23,7 +23,7 @@ public class PartsOfSpeech {
 	public static void main(String[] args) throws IOException,
 	 ClassNotFoundException {
 		PartsOfSpeech partsOfSpeech = new PartsOfSpeech();
-		partsOfSpeech.getPOSList("can i use html in android using java");
+		partsOfSpeech.getPOSList("can i use html in android using java?");
 	 
 	}
 	/**
